@@ -6,3 +6,7 @@ Mon 29.10 		60 min		Choose subject and start planning the project
 			30 min		Documentation part 1 + fix github account
 Tue 30.10		15 min		Documentation part 1 done
 			60 min		Understand how github works and upload the files
+Wed 31.10		100 min		Program a textversion of the board containing * for mines and 0 for empty squares
+Thu 1.11		120 min		Get the numbers on the squares that are lying next to mines. Begin the graphical part 
+					of the game
+Sun 4.11		90 min		Javadoc, start on the test-files
