@@ -4,7 +4,7 @@
  */
 public class Main {
     public static void main(String[] args) {
-        Game minesweeper = new Game(5,5,5);
+        Game minesweeper = new Game(2,2,1);
         String[][] board = minesweeper.createGame();
         
         for (int i = 0; i < board.length; i++) {

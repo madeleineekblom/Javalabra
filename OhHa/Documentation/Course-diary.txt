@@ -10,3 +10,4 @@ Wed 31.10		100 min		Program a textversion of the board containing * for mines an
 Thu 1.11		120 min		Get the numbers on the squares that are lying next to mines. Begin the graphical part 
 					of the game
 Sun 4.11		90 min		Javadoc, start on the test-files
+Mon 5.11		45 min		Make a small test on how to open buttons
