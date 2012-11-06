@@ -11,3 +11,4 @@ Thu 1.11		120 min		Get the numbers on the squares that are lying next to mines. 
 					of the game
 Sun 4.11		90 min		Javadoc, start on the test-files
 Mon 5.11		45 min		Make a small test on how to open buttons
+Tue 6.11 		60 min		Make code clean. Small changes in documentation

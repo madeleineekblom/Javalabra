@@ -1,4 +1,7 @@
+package UserInterface;
 
+
+import GameLogic.Game;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -10,11 +13,9 @@ import javax.swing.*;
  */
 public class GameBoard extends JFrame{
 
-    private int rows;
-    private int columns;
-    private int mines;
+    private JButton[][] buttons;
     private JButton startNewGame;
-    private String[][] matrix;
+    private char[][] matrix;
     Game minesweeper;
     
     /**
@@ -26,17 +27,17 @@ public class GameBoard extends JFrame{
      * @param mines     numbers of mines in the gameboard
      */
     public GameBoard(final int rows, final int columns, final int mines) {
-            this.rows = 10;
-            this.columns = columns;
-            this.mines = 10;
             
             minesweeper = new Game(rows, columns, mines);
             matrix = minesweeper.createGame();
-            setLayout(new GridLayout(rows+1,columns));
+            setLayout(new GridLayout(minesweeper.getRows()+1, minesweeper.getColumns()));
+            buttons = new JButton[minesweeper.getRows()][minesweeper.getColumns()];
             
-            for (int i = 0; i < rows; i++) {
-                for (int j = 0; j < columns; j++) {
-                    add(new JButton(matrix[i][j]));
+            for (int i = 0; i < matrix.length; i++) {
+                for (int j = 0; j < matrix[i].length; j++) {
+                    
+                    buttons[i][j] = new JButton(Character.toString(matrix[i][j]));
+                    add(buttons[i][j]);
                 }
             }
             
@@ -52,18 +53,6 @@ public class GameBoard extends JFrame{
                 }
            );
     }
-    /**
-     * Main
-     * @param args 
-     */
-    public static void main(String[] args) {
-        GameBoard window = new GameBoard(5,5,10);
-        window.setTitle("Minesweeper");
-        window.pack();
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setVisible(true);
-        
-        
-    }
+    
      
 }

@@ -1,4 +1,7 @@
+package UserInterface;
 
+
+import GameLogic.Game;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -7,18 +10,18 @@ import javax.swing.*;
  *
  * @author Madeleine Ekblom
  */
-public class Test extends JFrame {
+public class ButtonsTestMain extends JFrame {
 
     private final JButton b11;
     private final JButton b12;
     private final JButton b21;
     private final JButton b22;
-    private final String[][] matrix;
+    private final char[][] matrix;
 
-    public Test() {
+    public ButtonsTestMain() {
         Game testGame = new Game(2, 2, 1);
         matrix = testGame.createGame();
-        setLayout(new GridLayout(testGame.rows, testGame.columns));
+        setLayout(new GridLayout(testGame.getRows(), testGame.getColumns()));
         b11 = new JButton();
         b11.setActionCommand("visible");
         b12 = new JButton();
@@ -40,7 +43,7 @@ public class Test extends JFrame {
                     public void actionPerformed(ActionEvent event) {
                         if ("visible".equals(event.getActionCommand())) {
                             b11.setEnabled(false);
-                            b11.setText(matrix[0][0]);
+                            b11.setText(Character.toString(matrix[0][0]));
                         }
                     }
                 });
@@ -50,7 +53,7 @@ public class Test extends JFrame {
             public void actionPerformed(ActionEvent event) {
                 if ("visible".equals(event.getActionCommand())) {
                     b12.setEnabled(false);
-                    b12.setText(matrix[0][1]);
+                    b12.setText(Character.toString(matrix[0][1]));
                 }
             }
         });
@@ -60,7 +63,7 @@ public class Test extends JFrame {
             public void actionPerformed(ActionEvent event) {
                 if ("visible".equals(event.getActionCommand())) {
                     b21.setEnabled(false);
-                    b21.setText(matrix[1][0]);
+                    b21.setText(Character.toString(matrix[1][0]));
                 }
             }
         });
@@ -70,21 +73,16 @@ public class Test extends JFrame {
             public void actionPerformed(ActionEvent event) {
                 if ("visible".equals(event.getActionCommand())) {
                     b22.setEnabled(false);
-                    b22.setText(matrix[1][1]);
+                    b22.setText(Character.toString(matrix[1][1]));
                 }
 
             }
         });
 
-
-
-
-
-
     }
 
     public static void main(String[] args) {
-        Test window = new Test();
+        ButtonsTestMain window = new ButtonsTestMain();
         window.setTitle("Minesweeper");
         window.pack();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
