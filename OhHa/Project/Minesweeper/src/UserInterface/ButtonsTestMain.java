@@ -1,6 +1,5 @@
 package UserInterface;
 
-
 import GameLogic.Game;
 import java.awt.*;
 import java.awt.event.*;
@@ -10,75 +9,117 @@ import javax.swing.*;
  *
  * @author Madeleine Ekblom
  */
-public class ButtonsTestMain extends JFrame {
+public class ButtonsTestMain extends JFrame implements ActionListener {
 
-    private final JButton b11;
-    private final JButton b12;
-    private final JButton b21;
-    private final JButton b22;
+    private JButton[][] buttons;
     private final char[][] matrix;
+    private JButton startGame = new JButton("New Game");
+//    private boolean mouseClick = true;
+//    private MyMouseListener mouse = new MyMouseListener();
+//    private boolean mouseClick;
+    Game testGame;
+    private boolean[][] visited;
+    private JButton flags = new JButton("flag");
+    private JButton dig = new JButton("dig");
+    
 
     public ButtonsTestMain() {
-        Game testGame = new Game(2, 2, 1);
+        testGame = new Game(8,6,1);
         matrix = testGame.createGame();
-        setLayout(new GridLayout(testGame.getRows(), testGame.getColumns()));
-        b11 = new JButton();
-        b11.setActionCommand("visible");
-        b12 = new JButton();
-        b12.setActionCommand("visible");
-        b21 = new JButton();
-        b21.setActionCommand("visible");
-        b22 = new JButton();
-        b22.setActionCommand("visible");
-
-        add(b11);
-        add(b12);
-        add(b21);
-        add(b22);
-
-        b11.addActionListener(
-                new ActionListener() {
-
-                    @Override
-                    public void actionPerformed(ActionEvent event) {
-                        if ("visible".equals(event.getActionCommand())) {
-                            b11.setEnabled(false);
-                            b11.setText(Character.toString(matrix[0][0]));
-                        }
-                    }
-                });
-        b12.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent event) {
-                if ("visible".equals(event.getActionCommand())) {
-                    b12.setEnabled(false);
-                    b12.setText(Character.toString(matrix[0][1]));
-                }
-            }
-        });
-        b21.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent event) {
-                if ("visible".equals(event.getActionCommand())) {
-                    b21.setEnabled(false);
-                    b21.setText(Character.toString(matrix[1][0]));
-                }
-            }
-        });
-        b22.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent event) {
-                if ("visible".equals(event.getActionCommand())) {
-                    b22.setEnabled(false);
-                    b22.setText(Character.toString(matrix[1][1]));
-                }
+        visited = new boolean[testGame.getRows()][testGame.getColumns()];
+        buttons = new JButton[testGame.getRows()][testGame.getColumns()];
+        setLayout(new GridLayout(testGame.getRows()+1, testGame.getColumns()));
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                buttons[i][j] = new JButton();
+                add(buttons[i][j]);
+                buttons[i][j].setEnabled(true);
+                buttons[i][j].addActionListener(this);
+                
 
             }
-        });
+            add(dig);
+            dig.setEnabled(false);
+            dig.setActionCommand("enable");
+            add(flags);
+            flags.setEnabled(true);
+            flags.setActionCommand("disable");
+            add(startGame);
+            
+            startGame.setActionCommand("newgame");
+            startGame.addActionListener(this);
+//            addMouseListener(mouse);
+        }
+    }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+//        mouseClick = mouse.getMouseClick();
+        boolean digMine = true;
+//        if (e.getSource() == startGame) {
+//            ButtonsTestMain buttonsTestMain = new ButtonsTestMain();
+//            startGame.setText("new");
+//        }
+        if ("enable".equals(e.getActionCommand())) {
+            dig.setEnabled(true);
+            flags.setEnabled(false);
+            digMine = false;
+        } else if ("disable".equals(e.getActionCommand())) {
+            dig.setEnabled(false);
+            flags.setEnabled(true);
+            digMine = true;
+        }
+        
+        
+        Object help = e.getSource();
+        int row = -1;
+        int column = -1;
+
+        for (int i = 0; i < buttons.length; i++) {
+            for (int j = 0; j < buttons[i].length; j++) {
+                if (help == buttons[i][j]) {
+                    row = i;
+                    column = j;
+                    break;
+                }
+            }
+        }
+        if (digMine) {
+        openButtons(row, column);
+        } else {
+            markWithFlag(row, column);
+        }
+
+    }
+
+    public void openButtons(int row, int column) {
+        if (testGame.indexInBounds(row, column)) {
+            return;
+        }
+        if (visited[row][column]) {
+            return;
+        }
+        if (matrix[row][column] != '0') {
+            buttons[row][column].setEnabled(false);
+            buttons[row][column].setText(Character.toString(matrix[row][column]));
+            visited[row][column] = true;
+        } else {
+            buttons[row][column].setEnabled(false);
+            visited[row][column] = true;
+                openButtons(row - 1, column);
+                openButtons(row + 1, column);
+                openButtons(row, column - 1);
+                openButtons(row, column + 1);
+                openButtons(row-1, column-1);
+                openButtons(row-1, column+1);
+                openButtons(row+1, column+1);
+                openButtons(row+1, column-1);
+        }
+            return;
+    }
+    
+    public void markWithFlag(int row, int column) {
+        buttons[row][column].setText("|>");
     }
 
     public static void main(String[] args) {

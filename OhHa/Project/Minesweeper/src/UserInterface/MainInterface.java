@@ -9,7 +9,7 @@ import javax.swing.JFrame;
  */
 public class MainInterface {
     public static void main(String[] args) {
-        GameBoard window = new GameBoard(5,5,10);
+        GameBoard window = new GameBoard(5,5,5);
         window.setTitle("Minesweeper");
         window.pack();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

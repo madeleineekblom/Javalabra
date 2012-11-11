@@ -184,7 +184,7 @@ public class Game {
      * @param j     column-index
      * @return      returns true if (i,j) is in the matrix
      */
-    private boolean indexInBounds(int i, int j) {
+    public boolean indexInBounds(int i, int j) {
         return i < 0 || j < 0 || i > rows - 1 || j > columns - 1;
     }
 
