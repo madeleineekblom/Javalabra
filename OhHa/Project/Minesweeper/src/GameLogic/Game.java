@@ -33,7 +33,10 @@ public class Game {
             this.mines = 20;
         }
     }
-
+    /**
+     * 
+     * @return  the number of rows
+     */
     public int getRows() {
         return rows;
     }
@@ -182,9 +185,10 @@ public class Game {
      * 
      * @param i     row-index
      * @param j     column-index
-     * @return      returns true if (i,j) is in the matrix
+     * @return      returns true if (i,j) is outside the matrix,
+     *              otherwise false
      */
-    public boolean indexInBounds(int i, int j) {
+    public boolean indexOutsideMatrix(int i, int j) {
         return i < 0 || j < 0 || i > rows - 1 || j > columns - 1;
     }
 
@@ -204,7 +208,7 @@ public class Game {
         } else {
             for (int i = r - 1; i < r + 2; i++) {
                 for (int j = c - 1; j < c + 2; j++) {
-                    if (indexInBounds(i,j) || (i == r && j == c)) {
+                    if (indexOutsideMatrix(i,j) || (i == r && j == c)) {
                         continue;
                     } else {
                         if (matrix[i][j] == '*') {

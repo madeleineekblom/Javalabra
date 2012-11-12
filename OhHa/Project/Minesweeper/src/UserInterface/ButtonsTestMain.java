@@ -9,22 +9,22 @@ import javax.swing.*;
  *
  * @author Madeleine Ekblom
  */
+
+//I have used this class to test how to use buttons
 public class ButtonsTestMain extends JFrame implements ActionListener {
 
     private JButton[][] buttons;
     private final char[][] matrix;
     private JButton startGame = new JButton("New Game");
-//    private boolean mouseClick = true;
-//    private MyMouseListener mouse = new MyMouseListener();
-//    private boolean mouseClick;
     Game testGame;
     private boolean[][] visited;
-    private JButton flags = new JButton("flag");
-    private JButton dig = new JButton("dig");
+    public JButton flags = new JButton("flag");
+    public JButton dig = new JButton("dig");
+    boolean digMine = true;
     
 
     public ButtonsTestMain() {
-        testGame = new Game(8,6,1);
+        testGame = new Game(10,10,10);
         matrix = testGame.createGame();
         visited = new boolean[testGame.getRows()][testGame.getColumns()];
         buttons = new JButton[testGame.getRows()][testGame.getColumns()];
@@ -35,15 +35,18 @@ public class ButtonsTestMain extends JFrame implements ActionListener {
                 add(buttons[i][j]);
                 buttons[i][j].setEnabled(true);
                 buttons[i][j].addActionListener(this);
-                
+//                buttons[i][j].addMouseListener(new MyMouseListener(this));
 
             }
             add(dig);
             dig.setEnabled(false);
             dig.setActionCommand("enable");
+            dig.addActionListener(this);
             add(flags);
             flags.setEnabled(true);
             flags.setActionCommand("disable");
+            flags.addActionListener(this);
+//            flags.addMouseListener(new MyMouseListener(this) );
             add(startGame);
             
             startGame.setActionCommand("newgame");
@@ -55,19 +58,20 @@ public class ButtonsTestMain extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 //        mouseClick = mouse.getMouseClick();
-        boolean digMine = true;
-//        if (e.getSource() == startGame) {
-//            ButtonsTestMain buttonsTestMain = new ButtonsTestMain();
-//            startGame.setText("new");
-//        }
-        if ("enable".equals(e.getActionCommand())) {
-            dig.setEnabled(true);
-            flags.setEnabled(false);
-            digMine = false;
-        } else if ("disable".equals(e.getActionCommand())) {
+        
+        if (e.getSource() == startGame) {
+            startGame.setEnabled(false);
+            
+        }
+        if (e.getSource() == dig) {
             dig.setEnabled(false);
             flags.setEnabled(true);
             digMine = true;
+        }
+        if (e.getSource() == flags) {
+            dig.setEnabled(true);
+            flags.setEnabled(false);
+            digMine = false;
         }
         
         
@@ -93,7 +97,7 @@ public class ButtonsTestMain extends JFrame implements ActionListener {
     }
 
     public void openButtons(int row, int column) {
-        if (testGame.indexInBounds(row, column)) {
+        if (testGame.indexOutsideMatrix(row, column)) {
             return;
         }
         if (visited[row][column]) {
@@ -103,6 +107,10 @@ public class ButtonsTestMain extends JFrame implements ActionListener {
             buttons[row][column].setEnabled(false);
             buttons[row][column].setText(Character.toString(matrix[row][column]));
             visited[row][column] = true;
+            if (matrix[row][column] == '*') {
+                System.out.println("You lost!");
+                 
+            }
         } else {
             buttons[row][column].setEnabled(false);
             visited[row][column] = true;
@@ -119,6 +127,9 @@ public class ButtonsTestMain extends JFrame implements ActionListener {
     }
     
     public void markWithFlag(int row, int column) {
+        if (testGame.indexOutsideMatrix(row, column)) {
+            return;
+        }
         buttons[row][column].setText("|>");
     }
 

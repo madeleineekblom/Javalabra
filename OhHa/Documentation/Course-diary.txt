@@ -12,3 +12,6 @@ Thu 1.11		120 min		Get the numbers on the squares that are lying next to mines. 
 Sun 4.11		90 min		Javadoc, start on the test-files
 Mon 5.11		45 min		Make a small test on how to open buttons
 Tue 6.11 		60 min		Make code clean. Small changes in documentation
+Sun 11.11 		120 min		Recursion (open all empty squares), dig/flag buttons (alt. left/rightclick)
+Mon 12.11		210 min		Replace actionlistener by mouselistener (to get left/rightclick to work), newGame-button to work
+					Draw a simple class diagram. Update the documentation.
