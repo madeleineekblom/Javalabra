@@ -15,6 +15,16 @@ public class Game {
     private int mines;
     private char[] numbersString = {'0', '1', '2', '3', '4', '5', '6', '7', '8'};
 
+    
+    /**
+     * Empty constructor
+     */
+    public Game() {
+        this.rows = 5;
+        this.columns = 5;
+        this.mines = 5;
+    }
+    
     /* Constructor
      * 
      * @param rows      numbers of rows in the gameboard
@@ -23,15 +33,27 @@ public class Game {
      * 
      */
     public Game(int rows, int columns, int mines) {
-        if (mines < rows * columns) {
-            this.rows = rows;
-            this.columns = columns;
-            this.mines = mines;
-        } else {
-            this.rows = 10;
-            this.columns = 10;
-            this.mines = 20;
-        }
+       if (wrongInputs(rows, columns, mines)) {
+           this.rows = 10;
+           this.columns = 10;
+           this.mines = 10;
+       } else {
+           this.rows = rows;
+           this.columns = columns;
+           this.mines = mines;
+       }
+    }
+    
+   /**
+     * Checks if it is possible to create a constructor with these values
+     * 
+     * @param r     number of rows
+     * @param c     number of columns   
+     * @param m     number of mines
+     * @return      true if the values are positive and r*c > m
+     */
+    private boolean wrongInputs(int r, int c, int m) {
+        return r <= 0 || c <= 0 || m < 0 || m > r*c;
     }
     /**
      * 
@@ -40,12 +62,20 @@ public class Game {
     public int getRows() {
         return rows;
     }
-
+    
+    /**
+     * 
+     * @return number of columns
+     */
     public int getColumns() {
         return columns;
     }
-
-    public int getNumberOfMines() {
+    
+    /**
+     * 
+     * @return number of mines
+     */
+    public int getMines() {
         return mines;
     }
     /**
@@ -119,7 +149,7 @@ public class Game {
      * 
      * @return a matrix containg all the coordinates for the mines
      */
-    private int[][] placeMines() {
+    protected int[][] placeMines() {
         int[][] bombCoord = new int[mines][2];
         int[][] matrix = numberMatrix(rows, columns); 
         int help = mines;

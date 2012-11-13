@@ -10,14 +10,13 @@ import static org.junit.Assert.*;
 /**
  *
  * @author Madeleine Ekblom
- * @since 2012-11-04
  */
-public class GameTest {
-
+public class GameHelpMethodsTest {
+    
     double p = 0.01; // precision
     Game game;
-
-    public GameTest() {
+    
+    public GameHelpMethodsTest() {
     }
 
     @BeforeClass
@@ -27,35 +26,41 @@ public class GameTest {
     @AfterClass
     public static void tearDownClass() throws Exception {
     }
-
+    
     @Before
     public void setUp() {
     }
-
+    
     @After
     public void tearDown() {
     }
-
+    
+    
     @Test
-    public void checkConstructorMinesAreMoreThanPlaces() {
-        game = new Game(10, 10, 101);
-        assertEquals(10, game.getRows(), p);
-        assertEquals(10, game.getColumns(), p);
-        assertEquals(20, game.getNumberOfMines(), p);
+    public void checkPlaceMinesThatNumberOfMinesAreCorrect() {
+        game = new Game(5,5,4);
+        int[][] mineCoord = game.placeMines();
+        
+        assertEquals(4, mineCoord.length, p);
     }
-
-    @Test
-    public void checkConstructorMinesAreLessThanPlaces() {
-        for (int i = 10; i < 100; i = i + 10) {
-            for (int j = 10; j < 100; j = j + 10) {
-                game = new Game(i, j, (i + j) / 2);
-                assertEquals(i, game.getRows(), p);
-                assertEquals(j, game.getColumns(), p);
-                assertEquals((i + j) / 2, game.getNumberOfMines(), p);
+    
+    @Test 
+    public void checkNumberOfMinesIfNegativeInputs() {
+        game = new Game(-100, 10, -2222);
+        char[][] gameMatrix = game.createGame();
+        int mineSum = 0;
+        
+        for (int i = 0; i < game.getRows(); i++) {
+            for (int j = 0; j < game.getColumns(); j++) {
+                if (gameMatrix[i][j] == '*') {
+                    mineSum++;
+                }
             }
         }
+        
+        assertEquals(game.getMines(), mineSum, p);
     }
-
+    
     @Test
     public void checkThatTheNumberOfMinesAre10() {
         game = new Game(5, 5, 10);
@@ -70,7 +75,7 @@ public class GameTest {
             }
         }
 
-        assertEquals(game.getNumberOfMines(), mineSum, p);
+        assertEquals(game.getMines(), mineSum, p);
     }
 
     @Test
@@ -86,7 +91,7 @@ public class GameTest {
                 }
             }
         }
-        assertEquals(game.getNumberOfMines(), mineSum, p);
+        assertEquals(game.getMines(), mineSum, p);
     }
 
     @Test
@@ -135,6 +140,6 @@ public class GameTest {
         assertEquals(numMine,8,p);
         
     }
-  
+    
    
 }

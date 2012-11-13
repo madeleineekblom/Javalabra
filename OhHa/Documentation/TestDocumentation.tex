@@ -5,8 +5,17 @@
 \usepackage{amssymb}
 \usepackage{amsmath}
 
+\title{Test Documentation}
+\author{Madeleine Ekblom}
+
 \begin{document}
 
-Test Documentation
+\maketitle
+
+\newpage
+
+The logic in the game, eg. the class Game, are tested in three different JUnit tests. In the first one, GameConstructorTest, the constructor is tested. There are three different kinds of wrong inputs: the mines are more than the number of squares, negative input values and an empty constructor.
+In the second test, GameHelpMethodsTest, the help methods that are used to create a text version of the gameboard are tested. The things that are tested are: the number of mines are correct and if the numbers are correctly placed.
+The third test, GameMainMethodTest, checks that the main method, createGame, generates random gameboards. 
 
 \end{document}
