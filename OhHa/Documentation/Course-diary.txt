@@ -18,4 +18,7 @@ Mon 12.11		210 min		Replace actionlistener by mouselistener (to get left/rightcl
 Tue 13.11		100 min		Add more test files. update class diagram. Small changes in program.
 Mon 19.11		150 min		Add win method, some kind of stopwatch, make the "new game"-button work
 Tue 20.11		60 min		Start on the sequence diagram
+			200 min		Move gamelogic from interface, use picures instead of text as flag and mine
+			90 min		Sequence diagrams, small changes in program
+			
 

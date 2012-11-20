@@ -1,6 +1,8 @@
 package UserInterface;
 
-import GameLogic.Game;
+
+import GameLogic.GameMoves;
+import UserInterface.MyMouseListener;
 import java.awt.*;
 //import java.awt.event.*;
 import javax.swing.*;
@@ -14,16 +16,12 @@ public class GameBoard extends JFrame {
 
     public JButton[][] buttons;
     public JButton startNewGame;
-    public char[][] matrix;
-    Game minesweeper;
-    public boolean[][] visited;
-    private JPanel panel;
+    public GameMoves move;
+    public JPanel panel;
     private MyMouseListener mouse;
     public JButton flags;
-    public boolean[][] winMatrix;
-    private int numFlags;
 
-    // JFrame frame;
+    
     /** Constructor
      * 
      * @param rows      numbers of rows in the gameboard
@@ -32,13 +30,9 @@ public class GameBoard extends JFrame {
      */
     public GameBoard(final int rows, final int columns, final int mines) {
 
-        minesweeper = new Game(rows, columns, mines);
-        visited = new boolean[minesweeper.getRows()][minesweeper.getColumns()];
-        buttons = new JButton[minesweeper.getRows()][minesweeper.getColumns()];
+        move = new GameMoves(rows, columns, mines);
+        buttons = new JButton[rows][columns];
         mouse = new MyMouseListener(this);
-        winMatrix = new boolean[rows][columns];
-
-        numFlags = mines;
         createGameBoard();
     }
 
@@ -48,10 +42,14 @@ public class GameBoard extends JFrame {
      */
     private void createGameBoard() {
         //frame = new JFrame("Minesweeper");
+        ImageIcon icon = new ImageIcon("Pictures/mine.gif");      
+        Image im = icon.getImage();
+        im = im.getScaledInstance(50,50, Image.SCALE_SMOOTH);
+        this.setIconImage(im);
         this.setTitle("Minesweeper");
 
-        this.setResizable(true);
-        this.setPreferredSize(new Dimension(minesweeper.getRows() * 100, minesweeper.getColumns() * 100));
+        this.setResizable(false);
+        this.setPreferredSize(new Dimension(500,500));
 //        this.setLayout(new GridLayout(minesweeper.getRows() + 1, minesweeper.getColumns()));
         addButtonsToFrame();
         this.pack();
@@ -62,52 +60,27 @@ public class GameBoard extends JFrame {
 
     private void addButtonsToFrame() {
         panel = new JPanel();
-        panel.setLayout(new GridLayout(minesweeper.getRows() + 1, minesweeper.getColumns()));
-        matrix = minesweeper.createGame();
+        panel.setLayout(new GridLayout(move.game.getRows() + 1, move.game.getColumns()));
+        move.createGameBoard();
 
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) {
+        for (int i = 0; i < move.matrix.length; i++) {
+            for (int j = 0; j < move.matrix[i].length; j++) {
                 buttons[i][j] = new JButton();
-                buttons[i][j].setSize(new Dimension(5, 5));
+                buttons[i][j].setSize(3,3);
                 buttons[i][j].setEnabled(true);
                 buttons[i][j].addMouseListener(mouse);
                 panel.add(buttons[i][j]);
 
             }
         }
-        flags = new JButton(Integer.toString(getFlags()));
+        flags = new JButton(Integer.toString(move.getFlags()));
         panel.add(flags);
         startNewGame = new JButton("New Game");
-        startNewGame.setSize(new Dimension(5, 5));
+        startNewGame.setSize(3,3);
         panel.add(startNewGame);
         startNewGame.addMouseListener(mouse);
         this.add(panel);
     }
-
-    /**
-     * resets the buttons and creates a new gameboard
-     */
-//    public void reset() {
-//        matrix = minesweeper.createGame();
-//        startNewGame.setText("reset");
-//        for (int i = 0; i < minesweeper.getRows(); i++) {
-//            for (int j = 0; j < minesweeper.getColumns(); j++) {
-//                buttons[i][j].setText("");
-//                buttons[i][j].setEnabled(true);
-//            }
-//        }
-//        winMatrix = new boolean[minesweeper.getRows()][minesweeper.getColumns()];
-//        setFlags(0);
-//        flags.setText(Integer.toString(getFlags()));
-//        
-//
-//    }
     
-    public int getFlags() {
-        return numFlags;
-    }
     
-    public void setFlags(int num) {
-        numFlags = num;
-    }
 }

@@ -24,17 +24,18 @@ public class ButtonsTestMain extends JFrame implements ActionListener {
     
 
     public ButtonsTestMain() {
-        testGame = new Game(10,10,10);
+        testGame = new Game(1,2,1);
         matrix = testGame.createGame();
         visited = new boolean[testGame.getRows()][testGame.getColumns()];
         buttons = new JButton[testGame.getRows()][testGame.getColumns()];
         setLayout(new GridLayout(testGame.getRows()+1, testGame.getColumns()));
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
-                buttons[i][j] = new JButton();
+                buttons[i][j] = new JButton("", new ImageIcon("mine.gif"));
                 add(buttons[i][j]);
                 buttons[i][j].setEnabled(true);
                 buttons[i][j].addActionListener(this);
+                
 //                buttons[i][j].addMouseListener(new MyMouseListener(this));
 
             }
@@ -131,6 +132,7 @@ public class ButtonsTestMain extends JFrame implements ActionListener {
             return;
         }
         buttons[row][column].setText("|>");
+        
     }
 
     public static void main(String[] args) {

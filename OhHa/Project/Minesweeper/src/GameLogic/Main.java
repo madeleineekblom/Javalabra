@@ -3,22 +3,27 @@ package GameLogic;
 /*
  * @author Madeleine Ekblom
  * @since 2012-10-21
- */
+ * 
+ * Just a simple test....
+*/
 
-//Prints out a textversion of the gameboard
 public class Main {
+
     public static void main(String[] args) {
-        Game minesweeper = new Game(10,10,20);
-        char[][] board = minesweeper.createGame();
+        GameMoves m = new GameMoves(2,2,0);
+        m.createGameBoard();
+
+        m.openButtons(0,1);
+        boolean[][] h = m.help;
         
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[i].length; j++) {
-                System.out.print(board[i][j] + " ");
+        
+        for (int i = 0; i < h.length; i++) {
+            for (int j = 0; j < h[i].length; j++) {
+                System.out.print(Character.toString(m.matrix[i][j]));
+                System.out.print(Boolean.toString(h[i][j]));
             }
             System.out.println("");
         }
-        
-    
+
     }
-    
 }
