@@ -19,6 +19,9 @@ public class GameBoard extends JFrame {
     public boolean[][] visited;
     private JPanel panel;
     private MyMouseListener mouse;
+    public JButton flags;
+    public boolean[][] winMatrix;
+    private int numFlags;
 
     // JFrame frame;
     /** Constructor
@@ -33,10 +36,10 @@ public class GameBoard extends JFrame {
         visited = new boolean[minesweeper.getRows()][minesweeper.getColumns()];
         buttons = new JButton[minesweeper.getRows()][minesweeper.getColumns()];
         mouse = new MyMouseListener(this);
+        winMatrix = new boolean[rows][columns];
 
+        numFlags = mines;
         createGameBoard();
-
-
     }
 
     /**
@@ -72,7 +75,8 @@ public class GameBoard extends JFrame {
 
             }
         }
-
+        flags = new JButton(Integer.toString(getFlags()));
+        panel.add(flags);
         startNewGame = new JButton("New Game");
         startNewGame.setSize(new Dimension(5, 5));
         panel.add(startNewGame);
@@ -83,15 +87,27 @@ public class GameBoard extends JFrame {
     /**
      * resets the buttons and creates a new gameboard
      */
-    public void reset() {
-        matrix = minesweeper.createGame();
-        startNewGame.setText("reset");
-        for (int i = 0; i < minesweeper.getRows(); i++) {
-            for (int j = 0; j < minesweeper.getColumns(); j++) {
-                buttons[i][j].setText("");
-                buttons[i][j].setEnabled(true);
-            }
-        }
-        
+//    public void reset() {
+//        matrix = minesweeper.createGame();
+//        startNewGame.setText("reset");
+//        for (int i = 0; i < minesweeper.getRows(); i++) {
+//            for (int j = 0; j < minesweeper.getColumns(); j++) {
+//                buttons[i][j].setText("");
+//                buttons[i][j].setEnabled(true);
+//            }
+//        }
+//        winMatrix = new boolean[minesweeper.getRows()][minesweeper.getColumns()];
+//        setFlags(0);
+//        flags.setText(Integer.toString(getFlags()));
+//        
+//
+//    }
+    
+    public int getFlags() {
+        return numFlags;
+    }
+    
+    public void setFlags(int num) {
+        numFlags = num;
     }
 }

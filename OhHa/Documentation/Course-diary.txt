@@ -16,3 +16,6 @@ Sun 11.11 		120 min		Recursion (open all empty squares), dig/flag buttons (alt. 
 Mon 12.11		210 min		Replace actionlistener by mouselistener (to get left/rightclick to work), newGame-button to work
 					Draw a simple class diagram. Update the documentation.
 Tue 13.11		100 min		Add more test files. update class diagram. Small changes in program.
+Mon 19.11		150 min		Add win method, some kind of stopwatch, make the "new game"-button work
+Tue 20.11		60 min		Start on the sequence diagram
+

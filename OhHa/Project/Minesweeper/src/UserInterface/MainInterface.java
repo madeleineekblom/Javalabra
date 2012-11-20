@@ -7,6 +7,6 @@ package UserInterface;
  */
 public class MainInterface {
     public static void main(String[] args) {
-        GameBoard game = new GameBoard(5,5,2);
+        GameBoard game = new GameBoard(5,5,5);
     }
 }
