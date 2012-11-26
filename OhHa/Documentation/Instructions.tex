@@ -5,9 +5,44 @@
 \usepackage{amssymb}
 \usepackage{amsmath}
 
+\title{Instructions}
 
 \begin{document}
 
-Instructions
+\maketitle
+
+\section{Goal}
+
+To find all the mines as fast as possible.
+
+\section{How to play}
+
+\subsection{Left click}
+
+Opens a button: \\
+- If it is empty, it will open all the other empty squares around the pressed button \\
+- If it is a number, it will show how many mines that are placed around the specific button \\
+- If it is a mine, the game is lost \\
+
+\subsection{Right click} 
+
+Marks a button with a flag, assuming there's a mine hidden there: \\
+- If a mine is already marked with a flag, the flag will be removed from the button \\
+- When a button is marked with a flag, the button cannot be opened \\
+
+\subsection{Timekeeping}
+
+The time starts running when the first button is pressed and stops when the game is either lost or won.
+
+\subsection{How to win}
+
+When all the mines are marked with flags and the other buttons are opened, the game is won. Then it will pop a 
+window showing the result (e.g. the time in seconds), and asking the player to enter his/her name if the time is good 
+enough to enter the highscore list.
+
+
+
+
+
 
 \end{document}

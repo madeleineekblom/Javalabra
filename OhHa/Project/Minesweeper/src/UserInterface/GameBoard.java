@@ -2,9 +2,7 @@ package UserInterface;
 
 
 import GameLogic.GameMoves;
-import UserInterface.MyMouseListener;
 import java.awt.*;
-//import java.awt.event.*;
 import javax.swing.*;
 
 /**
@@ -20,6 +18,7 @@ public class GameBoard extends JFrame {
     public JPanel panel;
     private MyMouseListener mouse;
     public JButton flags;
+    private JMenuBar menubar = new JMenuBar();
 
     
     /** Constructor
@@ -33,15 +32,31 @@ public class GameBoard extends JFrame {
         move = new GameMoves(rows, columns, mines);
         buttons = new JButton[rows][columns];
         mouse = new MyMouseListener(this);
+        
         createGameBoard();
+        
     }
 
+    
+    public void buildMenu() {
+        JMenu menu = new JMenu("Menu");
+        menubar.add(menu);
+        
+        JMenu submenu = new JMenu("How to play");
+        menu.add(submenu);
+        
+        JMenuItem item = new JMenuItem("Open a square with left click, mark bomb with right, find all bombs");
+        submenu.add(item);
+    }
     /**
      * Creates a new jframe with a gridlayout, eg. the gameboard. The gameboard 
      * contains square-buttons and a new game-button.
      */
     private void createGameBoard() {
         //frame = new JFrame("Minesweeper");
+        
+        buildMenu();
+        this.setJMenuBar(menubar);
         ImageIcon icon = new ImageIcon("Pictures/mine.gif");      
         Image im = icon.getImage();
         im = im.getScaledInstance(50,50, Image.SCALE_SMOOTH);

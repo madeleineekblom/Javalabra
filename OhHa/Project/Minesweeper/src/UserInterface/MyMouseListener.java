@@ -10,7 +10,6 @@ import javax.swing.*;
  * @author Madeleine Ekblom
  * @since 2012-11
  */
-
 public class MyMouseListener extends MouseAdapter {
 
     GameBoard board;
@@ -21,6 +20,7 @@ public class MyMouseListener extends MouseAdapter {
     private long stopTime;
     private long startTime;
     boolean[][] flags;
+    WinLose winlose = new WinLose();
 
     /** Constructor
      * 
@@ -31,8 +31,8 @@ public class MyMouseListener extends MouseAdapter {
         flags = new boolean[board.move.game.getRows()][board.move.game.getColumns()];
         Image image1 = mine.getImage();
         Image image2 = flag.getImage();
-        image1 = image1.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-        image2 = image2.getScaledInstance(100, 100, Image.SCALE_REPLICATE);
+        image1 = image1.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+        image2 = image2.getScaledInstance(50, 50, Image.SCALE_REPLICATE);
         mine.setImage(image1);
         flag.setImage(image2);
 
@@ -88,12 +88,12 @@ public class MyMouseListener extends MouseAdapter {
             }
             if (board.move.win()) {
                 stopTime = e.getWhen();
-                System.out.println("You won!");
-                System.out.println("Time: " + countTime() + " seconds");
+                winlose.win(countTime());
+//                board.dispose();
             } else if (lost) {
                 stopTime = e.getWhen();
-                System.out.println("You lost!");
-                System.out.println("Yime: " + countTime() + " seconds");
+                winlose.lose(countTime());
+//                board.dispose();
             }
         }
     }
@@ -119,12 +119,13 @@ public class MyMouseListener extends MouseAdapter {
         }
         return coord;
     }
+
     /**
      * Creates a new game
      */
     private void reset() {
         board.dispose();
-        board = new GameBoard(5,5,2);
+        board = new GameBoard(5, 5, 2);
     }
 
     /**
@@ -149,7 +150,7 @@ public class MyMouseListener extends MouseAdapter {
                     } else {
                         char c = board.move.matrix[i][j];
                         if (c != '0') {
-                        board.buttons[i][j].setText(Character.toString(c));
+                            board.buttons[i][j].setText(Character.toString(c));
                         } else {
                             board.buttons[i][j].setText("");
                         }
@@ -169,17 +170,22 @@ public class MyMouseListener extends MouseAdapter {
      * @param column   button's column coordinate
      */
     public void markWithFlag(int row, int column) {
+
+        if (!board.buttons[row][column].isEnabled()) {
+            return;
+        }
         if (flags[row][column]) {
             board.move.unFlagSquare(row, column);
             board.buttons[row][column].setIcon(null);
             flags[row][column] = false;
         } else {
+
             board.move.markWithFlags(row, column);
             board.buttons[row][column].setIcon(flag);
             flags[row][column] = true;
         }
         board.flags.setText(Integer.toString(board.move.getFlags()));
-        return;
+
     }
 
     /**
