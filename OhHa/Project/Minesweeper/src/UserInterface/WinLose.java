@@ -28,13 +28,28 @@ public class WinLose extends JFrame implements ActionListener {
     private int mines;
     GameBoard game;
     Player player;
+    
+    /**
+     * Constructor
+     * Creates the player
+     */
+    public WinLose() {
+        player = new Player();
+    }
 
+    /**
+     * adds actionlistener to the buttons (quit and startGame) and to the textfield name
+     */
     private void addActions() {
         startGame.addActionListener(this);
         quit.addActionListener(this);
         name.addActionListener(this);
     }
 
+    /**
+     * If the game is lost, a window will pop up asking for either to play a new game or to quit
+     * @param time  The time that it took to lose the game
+     */
     public void lose(int time) {
         addActions();
         result.setText("You lost!\n" + "Time: " + time + " seconds");
@@ -53,7 +68,12 @@ public class WinLose extends JFrame implements ActionListener {
         this.validate();
 
     }
-
+    
+    /**
+     * If the game is won: Asks the player to enter its name.
+     * A button for start a new game and an other to quit
+     * @param time  how long the game lasted 
+     */
     public void win(int time) {
         this.time = time;
         addActions();
@@ -75,12 +95,27 @@ public class WinLose extends JFrame implements ActionListener {
 
     }
 
+    /**
+     * Sets the gameboard parameters so a new game can be started at the same level
+     * 
+     * @param r         number of rows
+     * @param c         number of columns
+     * @param m         number of mines
+     */
     public void setGameBoard(int r, int c, int m) {
         this.rows = r;
         this.columns = c;
         this.mines = m;
     }
 
+    /**
+     * If the source of the event is startGame, a new game will start
+     * If the source of the event is quit, the whole game ends and all the windows will be closed
+     * If the source of the event is name, the name and the time will be put in a
+     * file containg the best results (the file is different for all levels)
+     * 
+     * @param e     Actionevent
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == startGame) {
@@ -92,6 +127,10 @@ public class WinLose extends JFrame implements ActionListener {
         }
         if (e.getSource() == name) {
             String enteredName = name.getText();
+            
+            if (enteredName == null || enteredName.isEmpty()) {
+                enteredName = "anonymous";
+            }
             System.out.println(enteredName + "\nTime = " + time);
         
             int level = getLevel(mines);
@@ -106,7 +145,12 @@ public class WinLose extends JFrame implements ActionListener {
     }
 
 
-    
+    /**
+     * 
+     * @param mines  the level depends on how many mines the gameboard has
+     * @return       1 for beginner level, 2 for normal level, 3 for master level, 
+     *               otherwise 0 (e.g. a non-specified level)
+     */
     private int getLevel(int mines) {
         if (mines == 10) {
             return 1;

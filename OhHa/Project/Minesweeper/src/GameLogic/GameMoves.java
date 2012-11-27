@@ -77,7 +77,10 @@ public class GameMoves {
      * @param column    column coordinate
      */
     public void markWithFlags(int row, int column) {
-        if (visited[row][column]) {
+        if (game.indexOutsideMatrix(row, column)) {
+            return;
+        }
+        if (visited[row][column]){
             return;
         }
         flagMatrix[row][column] = true;
@@ -94,6 +97,9 @@ public class GameMoves {
      * @param column    the column coordinate
      */
     public void unFlagSquare(int row, int column) {
+        if (game.indexOutsideMatrix(row, column)) {
+            return;
+        }
         flagMatrix[row][column] = false;
         visited[row][column] = false;
         setFlags(getFlags()+1);
@@ -119,7 +125,9 @@ public class GameMoves {
         }
         return true;
     }
-    
+    /**
+     * Prints out that the game was lost
+     */
     public void lose() {
         System.out.println("You lost!");
         

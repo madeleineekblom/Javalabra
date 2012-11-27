@@ -11,11 +11,11 @@ import static org.junit.Assert.*;
  *
  * @author Madeleine Ekblom
  */
-public class GameMainMethodTest {
+public class GameTest3 {
     Game game;
     double p = 0.01; //precision
     
-    public GameMainMethodTest() {
+    public GameTest3() {
     }
 
     @BeforeClass

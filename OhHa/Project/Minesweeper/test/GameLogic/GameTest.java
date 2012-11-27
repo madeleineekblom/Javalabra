@@ -12,12 +12,12 @@ import static org.junit.Assert.*;
  * @author Madeleine Ekblom
  * @since 2012-11-04
  */
-public class GameConstructorTest {
+public class GameTest {
 
     double p = 0.01; // precision
     Game game;
 
-    public GameConstructorTest() {
+    public GameTest() {
     }
 
     @BeforeClass

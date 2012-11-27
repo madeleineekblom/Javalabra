@@ -46,7 +46,9 @@ public class GameBoard extends JFrame {
         
     }
 
-    
+    /**
+     * Builds up the menubar containg two menus and several submenus. 
+     */
     public void buildMenu() {
         JMenu menuHelp = new JMenu("Help");
         menubar.add(menuHelp);
@@ -118,6 +120,9 @@ public class GameBoard extends JFrame {
         this.validate();
     }
 
+    /**
+     * Adds buttons to the frame, gives the button a mouselistener, and enables the buttons
+     */
     private void addButtonsToFrame() {
         panel = new JPanel();
         panel.setLayout(new GridLayout(move.game.getRows() + 1, move.game.getColumns()));

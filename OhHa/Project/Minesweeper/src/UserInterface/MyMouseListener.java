@@ -209,6 +209,14 @@ public class MyMouseListener extends MouseAdapter implements ActionListener {
 
     }
 
+    /**
+     * Depending on the input (from the menubar) it will act in three different ways:
+     * master--> a new game at master level
+     * medio---> a new game at normal level
+     * beginner--> a new game at greenhorn level
+     * 
+     * @param e     Actionevent
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == board.master) {
