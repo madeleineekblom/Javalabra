@@ -14,8 +14,13 @@
 
 \newpage
 
-The logic in the game, eg. the class Game, are tested in three different JUnit tests. In the first one, GameConstructorTest, the constructor is tested. There are three different kinds of wrong inputs: the mines are more than the number of squares, negative input values and an empty constructor.
-In the second test, GameHelpMethodsTest, the help methods that are used to create a text version of the gameboard are tested. The things that are tested are: the number of mines are correct and if the numbers are correctly placed.
-The third test, GameMainMethodTest, checks that the main method, createGame, generates random gameboards. 
+The logic in the game, eg. the class Game, are tested in three different JUnit tests. In the first one, GameTest, the constructor is tested. There are three different kinds of wrong inputs: the mines are more than the number of squares, negative input values and an empty constructor.
+In the second JUnit test, GamTest3, the help methods that are used to create a text version of the gameboard are tested. The things that are tested are: the number of mines are correct and if the numbers are correctly placed.
+The third JUnit test, GameTest3, checks that the main method, createGame, generates random gameboards. \\
+
+In the GameMovesTest, the logic for the game is tested. It checks that the methods openButtons, markWithFlag and unMarkSquare works properly. The test checks that the helpmatrices flagMatrix and help keeps update when a method is called. \\
+
+In the HighScoreTest, the reading and writing of the highscore files works. First it checks that each level returns the correct file in the getFile method.
+
 
 \end{document}
