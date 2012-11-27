@@ -1,9 +1,14 @@
 package UserInterface;
 
-import GameLogic.HighScore;
+import GameLogic.Player;
 import java.awt.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.Scanner;
 
 /**
  *
@@ -18,7 +23,11 @@ public class WinLose extends JFrame implements ActionListener {
     public JTextField name = new JTextField("Enter your name:", 20);
     private JLabel result = new JLabel("");
     private int time;
-    private static HighScore greenTop5 = new HighScore();
+    private int rows;
+    private int columns;
+    private int mines;
+    GameBoard game;
+    Player player;
 
     private void addActions() {
         startGame.addActionListener(this);
@@ -54,6 +63,8 @@ public class WinLose extends JFrame implements ActionListener {
         this.setTitle("Results");
         this.add("North", result);
         this.add("South", name);
+        this.add("West", startGame);
+        this.add("East", quit);
 
         this.setResizable(false);
         this.setPreferredSize(new Dimension(200, 100));
@@ -64,21 +75,46 @@ public class WinLose extends JFrame implements ActionListener {
 
     }
 
+    public void setGameBoard(int r, int c, int m) {
+        this.rows = r;
+        this.columns = c;
+        this.mines = m;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == startGame) {
-            this.dispose();
-            GameBoard board = new GameBoard(10, 10, 10);
+            game = new GameBoard(rows, columns, mines);
         }
         if (e.getSource() == quit) {
             System.exit(0);
+            game = new GameBoard(rows, columns, mines);
         }
         if (e.getSource() == name) {
             String enteredName = name.getText();
             System.out.println(enteredName + "\nTime = " + time);
-            if (time < greenTop5.getSlowestTime()) {
-                
+        
+            int level = getLevel(mines);
+        
+
+            try {
+                player.writeIntoFile(enteredName, time, level);
+            } catch (IOException ex) {
+                Logger.getLogger(WinLose.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+    }
+
+
+    
+    private int getLevel(int mines) {
+        if (mines == 10) {
+            return 1;
+        } else if (mines == 40) {
+            return 2;
+        } else if (mines == 99) {
+            return 3;
+        }
+        return 0;
     }
 }

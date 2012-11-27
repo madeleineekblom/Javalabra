@@ -10,6 +10,6 @@ public class MainInterface {
     // After creating the new class GameMoves, the interface got a bit unreliable...
 
     public static void main(String[] args) {
-        GameBoard minesweeper = new GameBoard(2,3,2);
+        GameBoard minesweeper = new GameBoard(9,9,10);
     }
 }

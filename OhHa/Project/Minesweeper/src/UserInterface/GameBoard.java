@@ -23,6 +23,9 @@ public class GameBoard extends JFrame {
     public JMenuItem medio;
     public JMenuItem master;
     public JMenuItem quit;
+    public int row;
+    public int column;
+    public int mine;
     
     /** Constructor
      * 
@@ -35,6 +38,9 @@ public class GameBoard extends JFrame {
         move = new GameMoves(rows, columns, mines);
         buttons = new JButton[rows][columns];
         mouse = new MyMouseListener(this);
+        this.row = rows;
+        this.column = columns;
+        this.mine = mines;
         
         createGameBoard();
         
@@ -48,8 +54,8 @@ public class GameBoard extends JFrame {
         JMenu subHow = new JMenu("How to play");
         menuHelp.add(subHow);
         
-        JMenuItem item = new JMenuItem("Open a button pressing the mouse's left button\n"
-                + "Mark a button pressing right button\n"
+        JMenuItem item = new JMenuItem("Open a button pressing the mouse's left button" + "\n"
+                + "Mark a button pressing right button" + "\n"
                 + "Find all the mines and open the others as fast as possible");
         subHow.add(item);
         
@@ -64,7 +70,7 @@ public class GameBoard extends JFrame {
         subStart.add(beginner);
         beginner.addActionListener(mouse);
         
-        medio = new JMenuItem("Mediocrity");
+        medio = new JMenuItem("Normal");
         subStart.add(medio);
         medio.addActionListener(mouse);
         
@@ -79,7 +85,7 @@ public class GameBoard extends JFrame {
         menuStat.add(top5);
         
         JMenu level1 = new JMenu("Greenhorn");
-        JMenu level2 = new JMenu("Mediocrity");
+        JMenu level2 = new JMenu("Normal");
         JMenu level3 = new JMenu("Master");
                 
         top5.add(level1);

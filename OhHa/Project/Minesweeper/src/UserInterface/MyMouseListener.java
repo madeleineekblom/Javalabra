@@ -23,6 +23,9 @@ public class MyMouseListener extends MouseAdapter implements ActionListener {
     private long startTime;
     boolean[][] flags;
     WinLose winlose;
+    int r;
+    int c;
+    int m;
 
     /** Constructor
      * 
@@ -30,8 +33,9 @@ public class MyMouseListener extends MouseAdapter implements ActionListener {
      */
     public MyMouseListener(GameBoard b) {
         this.board = b;
-        int r = board.move.game.getRows();
-        int c = board.move.game.getColumns();
+        r = board.move.game.getRows();
+        c = board.move.game.getColumns();
+        m = board.move.game.getMines();
         flags = new boolean[r][c];
         Image image1 = mine.getImage();
         Image image2 = flag.getImage();
@@ -87,10 +91,13 @@ public class MyMouseListener extends MouseAdapter implements ActionListener {
             }
             if (board.move.win()) {
                 stopTime = e.getWhen();
+                winlose.setGameBoard(r, c, m);
                 winlose.win(countTime());
+                
 //                board.dispose();
             } else if (lost) {
                 stopTime = e.getWhen();
+                winlose.setGameBoard(r, c, m);
                 winlose.lose(countTime());
 //                board.dispose();
             }
