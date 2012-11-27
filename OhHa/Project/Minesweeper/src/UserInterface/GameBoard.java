@@ -13,13 +13,16 @@ import javax.swing.*;
 public class GameBoard extends JFrame {
 
     public JButton[][] buttons;
-    public JButton startNewGame;
+//    public JButton startNewGame;
     public GameMoves move;
     public JPanel panel;
     private MyMouseListener mouse;
     public JButton flags;
     private JMenuBar menubar = new JMenuBar();
-
+    public JMenuItem beginner;
+    public JMenuItem medio;
+    public JMenuItem master;
+    public JMenuItem quit;
     
     /** Constructor
      * 
@@ -39,14 +42,50 @@ public class GameBoard extends JFrame {
 
     
     public void buildMenu() {
-        JMenu menu = new JMenu("Menu");
-        menubar.add(menu);
+        JMenu menuHelp = new JMenu("Help");
+        menubar.add(menuHelp);
         
-        JMenu submenu = new JMenu("How to play");
-        menu.add(submenu);
+        JMenu subHow = new JMenu("How to play");
+        menuHelp.add(subHow);
         
-        JMenuItem item = new JMenuItem("Open a square with left click, mark bomb with right, find all bombs");
-        submenu.add(item);
+        JMenuItem item = new JMenuItem("Open a button pressing the mouse's left button\n"
+                + "Mark a button pressing right button\n"
+                + "Find all the mines and open the others as fast as possible");
+        subHow.add(item);
+        
+        JMenu subStart = new JMenu("New game");
+        menuHelp.add(subStart);
+        
+        quit = new JMenuItem("Quit");
+        menuHelp.add(quit);
+        quit.addActionListener(mouse);
+        
+        beginner = new JMenuItem("Greenhorn");
+        subStart.add(beginner);
+        beginner.addActionListener(mouse);
+        
+        medio = new JMenuItem("Mediocrity");
+        subStart.add(medio);
+        medio.addActionListener(mouse);
+        
+        master = new JMenuItem("Master");
+        subStart.add(master);
+        master.addActionListener(mouse);
+        
+        JMenu menuStat= new JMenu("Statistics");
+        menubar.add(menuStat);
+        
+        JMenu top5 = new JMenu("Top 5 result"); // result form highscore list 
+        menuStat.add(top5);
+        
+        JMenu level1 = new JMenu("Greenhorn");
+        JMenu level2 = new JMenu("Mediocrity");
+        JMenu level3 = new JMenu("Master");
+                
+        top5.add(level1);
+        top5.add(level2);
+        top5.add(level3);
+        
     }
     /**
      * Creates a new jframe with a gridlayout, eg. the gameboard. The gameboard 
@@ -63,8 +102,8 @@ public class GameBoard extends JFrame {
         this.setIconImage(im);
         this.setTitle("Minesweeper");
 
-        this.setResizable(false);
-        this.setPreferredSize(new Dimension(500,500));
+        this.setResizable(true);
+        this.setPreferredSize(new Dimension((move.game.getRows()+1)*50, move.game.getColumns()*50));
 //        this.setLayout(new GridLayout(minesweeper.getRows() + 1, minesweeper.getColumns()));
         addButtonsToFrame();
         this.pack();
@@ -90,10 +129,10 @@ public class GameBoard extends JFrame {
         }
         flags = new JButton(Integer.toString(move.getFlags()));
         panel.add(flags);
-        startNewGame = new JButton("New Game");
-        startNewGame.setSize(3,3);
-        panel.add(startNewGame);
-        startNewGame.addMouseListener(mouse);
+//        startNewGame = new JButton("New Game");
+//        startNewGame.setSize(3,3);
+//        panel.add(startNewGame);
+//        startNewGame.addMouseListener(mouse);
         this.add(panel);
     }
     

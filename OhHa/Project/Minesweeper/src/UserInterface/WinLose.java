@@ -1,5 +1,6 @@
 package UserInterface;
 
+import GameLogic.HighScore;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
@@ -14,9 +15,10 @@ public class WinLose extends JFrame implements ActionListener {
 
     public JButton startGame = new JButton("New Game");
     public JButton quit = new JButton("Quit");
-    public JTextField name = new JTextField("Enter your name:");
+    public JTextField name = new JTextField("Enter your name:", 20);
     private JLabel result = new JLabel("");
     private int time;
+    private static HighScore greenTop5 = new HighScore();
 
     private void addActions() {
         startGame.addActionListener(this);
@@ -62,22 +64,6 @@ public class WinLose extends JFrame implements ActionListener {
 
     }
 
-    public void newGame() {
-        
-        this.setTitle("New game?");
-        this.setLayout(new BorderLayout());
-        addActions();
-        
-        this.add("North", result);
-        this.add("South", name);
-        this.setResizable(false);
-        this.setPreferredSize(new Dimension(200, 100));
-        this.pack();
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setVisible(true);
-        
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == startGame) {
@@ -85,14 +71,14 @@ public class WinLose extends JFrame implements ActionListener {
             GameBoard board = new GameBoard(10, 10, 10);
         }
         if (e.getSource() == quit) {
-            this.dispose();
+            System.exit(0);
         }
         if (e.getSource() == name) {
             String enteredName = name.getText();
             System.out.println(enteredName + "\nTime = " + time);
-            this.dispose();
-            this.removeAll();
-            newGame();
+            if (time < greenTop5.getSlowestTime()) {
+                
+            }
         }
     }
 }

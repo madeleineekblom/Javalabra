@@ -1,6 +1,8 @@
 package UserInterface;
 
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
@@ -10,7 +12,7 @@ import javax.swing.*;
  * @author Madeleine Ekblom
  * @since 2012-11
  */
-public class MyMouseListener extends MouseAdapter {
+public class MyMouseListener extends MouseAdapter implements ActionListener {
 
     GameBoard board;
     private boolean running = false;
@@ -20,22 +22,24 @@ public class MyMouseListener extends MouseAdapter {
     private long stopTime;
     private long startTime;
     boolean[][] flags;
-    WinLose winlose = new WinLose();
+    WinLose winlose;
 
     /** Constructor
      * 
-     * @param w     the gameboard that will use MyMouseListener
+     * @param b     the gameboard that will use MyMouseListener
      */
-    public MyMouseListener(GameBoard w) {
-        this.board = w;
-        flags = new boolean[board.move.game.getRows()][board.move.game.getColumns()];
+    public MyMouseListener(GameBoard b) {
+        this.board = b;
+        int r = board.move.game.getRows();
+        int c = board.move.game.getColumns();
+        flags = new boolean[r][c];
         Image image1 = mine.getImage();
         Image image2 = flag.getImage();
-        image1 = image1.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
-        image2 = image2.getScaledInstance(50, 50, Image.SCALE_REPLICATE);
+        image1 = image1.getScaledInstance(50,50, Image.SCALE_SMOOTH); // 50x50 works for 10x10
+        image2 = image2.getScaledInstance(50,50, Image.SCALE_REPLICATE);
         mine.setImage(image1);
         flag.setImage(image2);
-
+        this.winlose = new WinLose();
 
     }
 
@@ -70,11 +74,6 @@ public class MyMouseListener extends MouseAdapter {
         Object b = e.getSource();
 
         if (b instanceof JButton) {
-
-            if (e.getSource() == board.startNewGame && leftButton(e)) {
-                reset();
-            }
-
             if (running == false) {
                 running = true;
                 startTime = e.getWhen();
@@ -123,9 +122,15 @@ public class MyMouseListener extends MouseAdapter {
     /**
      * Creates a new game
      */
-    private void reset() {
+    private void reset(int n) {
         board.dispose();
-        board = new GameBoard(5, 5, 2);
+        if (n == 1) {
+            board = new GameBoard(9, 9, 10);
+        } else if (n == 2) {
+            board = new GameBoard(16,16,40);
+        } else if (n == 3) {
+            board = new GameBoard(30,16,99);
+        }
     }
 
     /**
@@ -195,5 +200,21 @@ public class MyMouseListener extends MouseAdapter {
     public int countTime() {
         return (int) ((stopTime - startTime) / 1000.0);
 
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == board.master) {
+            reset(3);
+        }
+        if (e.getSource() == board.medio) {
+            reset(2);
+        }
+        if (e.getSource() == board.beginner) {
+            reset(1);
+        }
+        if (e.getSource() == board.quit) {
+            System.exit(0);
+        }
     }
 }

@@ -11,7 +11,7 @@ import java.util.*;
  */
 public class HighScore {
     
-    private HashMap<String,Integer> scores = new HashMap<String, Integer>();
+    private HashMap<Integer, String> scores = new HashMap<Integer, String>();
     private ArrayList<Integer> times = new ArrayList<Integer>();
     
     public int getSlowestTime() {
@@ -26,4 +26,20 @@ public class HighScore {
         }
         return t;
     }
+    
+    private void removeTime() {
+        if (times.size() < 5) {
+            return;
+        }
+        int t = getSlowestTime(); // What happens if there are two results with the same name and time???
+        times.remove(t);
+        scores.remove(t);
+        
+    }
+    
+    public void addTime(String name, int time) {  
+        removeTime();
+        scores.put(time, name);
+        times.add(time);
+    } 
 }
