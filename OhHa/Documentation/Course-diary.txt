@@ -23,4 +23,5 @@ Tue 20.11		60 min		Start on the sequence diagram
 Mon 26.11		150 min		Start on the highscore-list, change result outputs to windows, add menubar
 Tue 27.11		150 min		Add actionlistener to the menu
 			240 min		Read and write highscore list
+			120 min		Add tests
 

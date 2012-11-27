@@ -1,6 +1,6 @@
 package UserInterface;
 
-import GameLogic.Player;
+import GameLogic.Highscore;
 import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -27,14 +27,14 @@ public class WinLose extends JFrame implements ActionListener {
     private int columns;
     private int mines;
     GameBoard game;
-    Player player;
+    Highscore player;
     
     /**
      * Constructor
      * Creates the player
      */
     public WinLose() {
-        player = new Player();
+        player = new Highscore();
     }
 
     /**

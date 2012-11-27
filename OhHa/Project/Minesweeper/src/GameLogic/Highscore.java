@@ -11,7 +11,7 @@ import java.util.*;
  *
  * @author Madeleine Ekblom
  */
-public class Player {
+public class Highscore {
 
     File file;
     ArrayList<String> players = new ArrayList<String>();
@@ -20,7 +20,7 @@ public class Player {
     File master = new File("Results/Master.txt");
     File f = new File("f");
 
-    public Player() {
+    public Highscore() {
     }
     
     /**
@@ -59,7 +59,7 @@ public class Player {
      * @return      the file corresponding to the specific level, otherwise f 
      *              a file that is just a comparing
      */
-    private File getFile(int level) {
+    protected File getFile(int level) {
         if (level == 1) {
             return beginner;
         } else if (level == 2) {

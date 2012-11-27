@@ -47,7 +47,7 @@ public class ReadFileMain {
 //        }
 //        
         
-        Player player = new Player();
+        Highscore player = new Highscore();
         player.writeIntoFile("Apa", 13, 1);
         player.writeIntoFile("Gorilla", 100,1);
         
