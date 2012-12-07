@@ -27,3 +27,5 @@ Tue 27.11		150 min		Add actionlistener to the menu
 Fri 7.12		180 min		Sorting algorithm for highscore list
 			60 min		Small changes in program
 			60 min		Fix a working .jar file
+-------------------------------------------------------------------------------------------------------------------------
+			2470 min = 41 h 10 min
