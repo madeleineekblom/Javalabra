@@ -24,7 +24,7 @@ public class ButtonsTestMain extends JFrame implements ActionListener {
     
 
     public ButtonsTestMain() {
-        testGame = new Game(1,2,1);
+        testGame = new Game(10, 10, 5);
         matrix = testGame.createGame();
         visited = new boolean[testGame.getRows()][testGame.getColumns()];
         buttons = new JButton[testGame.getRows()][testGame.getColumns()];

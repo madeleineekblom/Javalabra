@@ -1,8 +1,10 @@
 package GameLogic;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
@@ -22,7 +24,7 @@ public class Highscore {
 
     public Highscore() {
     }
-    
+
     /**
      * 
      * @param level     1 for greenhorn, 2 for normal, 3 for master
@@ -34,7 +36,35 @@ public class Highscore {
         return 100;
 
     }
-    
+
+    /**Sorts a nx2 list in order according to the second column (which is 
+     * a column containg numbers)
+     * 
+     * @param list      the matrix that will be sorted (nx2)
+     * @return          the sorted matrix
+     */
+    public String[][] sortList(String[][] list) {
+
+        for (int i = 0; i < list[1].length - 1; i++) {
+            for (int j = i + 1; j < list[1].length; j++) {
+                int timei = Integer.parseInt(list[i][1]);
+                int timej = Integer.parseInt(list[j][1]);
+                if (timei > timej) {
+                    String namei = list[i][0];
+                    String namej = list[j][0];
+
+                    list[i][0] = namej;
+                    list[j][0] = namei;
+                    list[i][1] = Integer.toString(timej);
+                    list[j][1] = Integer.toString(timei);
+                }
+            }
+
+        }
+
+        return list;
+    }
+
     /**Returns a list of the top five results at a specific level
      * 
      * @param level 1 for greenhorn, 2 for normal, 3 for master
@@ -43,14 +73,19 @@ public class Highscore {
      */
     public String[][] getTop5(int level) throws FileNotFoundException {
         String[][] list = getHighscorelist(getFile(level));
+        list = sortList(list);
         String[][] results = new String[5][2];
-        
-        for (int i = 0; i < list[1].length; i++) {
-            
+
+        if (list.length < 5) {
+            return list;
+        } else {
+            for (int i = 0; i < 5; i++) {
+                results[i][0] = list[i][0];
+                results[i][1] = list[i][1];
+            }
+            return results;
         }
         
-        
-        return results;
     }
 
     /**

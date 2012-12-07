@@ -48,13 +48,34 @@ public class ReadFileMain {
 //        
         
         Highscore player = new Highscore();
-        player.writeIntoFile("Apa", 13, 1);
-        player.writeIntoFile("Gorilla", 100,1);
+        player.writeIntoFile("Apa2", 15, 1);
+        player.writeIntoFile("Gorilla88", 2, 1);
+        player.writeIntoFile("Gorilla3", 2, 1);
+        player.writeIntoFile("Apa1", 12, 1);
+        player.writeIntoFile("Gorilla1", 13,1);
         
-        String[][] results = player.getHighscorelist(new File("Results/Beginner.txt"));
+        player.writeIntoFile("Gorilla2", 17,1);
+        player.writeIntoFile("Apa3", 50, 1);
         
-        for (int i = 0; i < 3; i++) {
+       
+        
+        File level1 = new File("Results/Beginner.txt");
+        
+      
+        String[][] results = player.getHighscorelist(level1);
+        player.sortList(results);
+        
+        String[][] sort = player.getTop5(1);
+        
+        System.out.println(sort.length + " " + sort[0].length);
+       
+        
+        for (int i = 0; i < results.length; i++) {
             System.out.println(results[i][0] + " " + results[i][1]);
+        }
+        
+        for (int i = 0; i < 5; i++) {
+            System.out.println(sort[i][0] + " " + sort[i][1]);
         }
     }
     

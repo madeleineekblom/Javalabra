@@ -2,7 +2,9 @@ package UserInterface;
 
 
 import GameLogic.GameMoves;
+import GameLogic.Highscore;
 import java.awt.*;
+import java.io.FileNotFoundException;
 import javax.swing.*;
 
 /**
@@ -26,6 +28,7 @@ public class GameBoard extends JFrame {
     public int row;
     public int column;
     public int mine;
+    private Highscore scores = new Highscore();
     
     /** Constructor
      * 
@@ -33,7 +36,7 @@ public class GameBoard extends JFrame {
      * @param columns   numbers of columns in the gameboard
      * @param mines     numbers of mines in the gameboard
      */
-    public GameBoard(final int rows, final int columns, final int mines) {
+    public GameBoard(final int rows, final int columns, final int mines) throws FileNotFoundException {
 
         move = new GameMoves(rows, columns, mines);
         buttons = new JButton[rows][columns];
@@ -49,7 +52,7 @@ public class GameBoard extends JFrame {
     /**
      * Builds up the menubar containg two menus and several submenus. 
      */
-    public void buildMenu() {
+    public void buildMenu() throws FileNotFoundException {
         JMenu menuHelp = new JMenu("Help");
         menubar.add(menuHelp);
         
@@ -83,7 +86,7 @@ public class GameBoard extends JFrame {
         JMenu menuStat= new JMenu("Statistics");
         menubar.add(menuStat);
         
-        JMenu top5 = new JMenu("Top 5 result"); // result form highscore list 
+        JMenu top5 = new JMenu("Top 5 result"); // results form highscore list 
         menuStat.add(top5);
         
         JMenu level1 = new JMenu("Greenhorn");
@@ -94,12 +97,24 @@ public class GameBoard extends JFrame {
         top5.add(level2);
         top5.add(level3);
         
+        addHighscore(level1, 1);
+        addHighscore(level2, 2);
+        addHighscore(level3, 3);
+        
     }
+    
+    private void addHighscore(JMenu level, int n) throws FileNotFoundException {
+        String[][] results = scores.getTop5(n);
+        for (int i = 0; i < results.length; i++) {
+            level.add(new JMenuItem(i+1 + ". " + results[i][0] + " " + results[i][1]));
+        }
+    }
+    
     /**
      * Creates a new jframe with a gridlayout, eg. the gameboard. The gameboard 
      * contains square-buttons and a new game-button.
      */
-    private void createGameBoard() {
+    private void createGameBoard() throws FileNotFoundException {
         //frame = new JFrame("Minesweeper");
         
         buildMenu();

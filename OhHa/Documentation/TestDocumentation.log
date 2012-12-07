@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2011.8.25)  27 NOV 2012 21:49
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2011.8.25)  7 DEC 2012 12:35
 entering extended mode
 **TestDocumentation.tex
 (C:\Users\Madde\.ssh\Javalabra\OhHa\Documentation\TestDocumentation.tex
@@ -348,32 +348,48 @@ File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 ) [1
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 17--20
+Underfull \hbox (badness 10000) in paragraph at lines 19--22
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 21--22
+Underfull \hbox (badness 10000) in paragraph at lines 23--24
 
  []
 
-[2] (C:\Users\Madde\.ssh\Javalabra\OhHa\Documentation\TestDocumentation.aux) ) 
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--30
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 31--32
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 33--34
+
+ []
+
+[2] [3] (C:\Users\Madde\.ssh\Javalabra\OhHa\Documentation\TestDocumentation.aux
+) ) 
 Here is how much of TeX's memory you used:
- 1512 strings out of 494045
- 16062 string characters out of 3145969
- 63090 words of memory out of 3000000
- 4830 multiletter control sequences out of 15000+200000
- 8841 words of font info for 29 fonts, out of 3000000 for 9000
+ 1516 strings out of 494045
+ 16111 string characters out of 3145969
+ 65090 words of memory out of 3000000
+ 4832 multiletter control sequences out of 15000+200000
+ 10386 words of font info for 31 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
- 27i,6n,22p,309b,192s stack positions out of 5000i,500n,10000p,200000b,50000s
- 
-<C:\Users\Madde\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecr
-m1200.pk> <C:\Users\Madde\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\
-dpi600\ecrm1440.pk> <C:\Users\Madde\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jk
-nappen\ec\dpi600\ecrm2074.pk>
-Output written on TestDocumentation.pdf (2 pages, 29961 bytes).
+ 27i,6n,22p,635b,192s stack positions out of 5000i,500n,10000p,200000b,50000s
+ <C:\Users\Madde\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600
+\ecbx1728.pk> <C:\Users\Madde\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen
+\ec\dpi600\ecrm1200.pk> <C:\Users\Madde\AppData\Local\MiKTeX\2.9\fonts\pk\ljfou
+r\jknappen\ec\dpi600\ecrm1440.pk> <C:\Users\Madde\AppData\Local\MiKTeX\2.9\font
+s\pk\ljfour\jknappen\ec\dpi600\ecrm2074.pk>
+Output written on TestDocumentation.pdf (3 pages, 39317 bytes).
 PDF statistics:
- 98 PDF objects out of 1000 (max. 8388607)
+ 126 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -5,6 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
@@ -129,7 +132,7 @@ public class MyMouseListener extends MouseAdapter implements ActionListener {
     /**
      * Creates a new game
      */
-    private void reset(int n) {
+    private void reset(int n) throws FileNotFoundException {
         board.dispose();
         if (n == 1) {
             board = new GameBoard(9, 9, 10);
@@ -220,13 +223,25 @@ public class MyMouseListener extends MouseAdapter implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == board.master) {
-            reset(3);
+            try {
+                reset(3);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(MyMouseListener.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         if (e.getSource() == board.medio) {
-            reset(2);
+            try {
+                reset(2);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(MyMouseListener.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         if (e.getSource() == board.beginner) {
-            reset(1);
+            try {
+                reset(1);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(MyMouseListener.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         if (e.getSource() == board.quit) {
             System.exit(0);

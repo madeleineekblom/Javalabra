@@ -119,11 +119,19 @@ public class WinLose extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == startGame) {
-            game = new GameBoard(rows, columns, mines);
+            try {
+                game = new GameBoard(rows, columns, mines);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(WinLose.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         if (e.getSource() == quit) {
             System.exit(0);
-            game = new GameBoard(rows, columns, mines);
+            try {
+                game = new GameBoard(rows, columns, mines);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(WinLose.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         if (e.getSource() == name) {
             String enteredName = name.getText();
