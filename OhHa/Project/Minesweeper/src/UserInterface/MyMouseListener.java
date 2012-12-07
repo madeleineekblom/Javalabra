@@ -19,7 +19,7 @@ public class MyMouseListener extends MouseAdapter implements ActionListener {
 
     GameBoard board;
     private boolean running = false;
-    boolean lost = false;
+    private boolean lost = false;
     ImageIcon mine = new ImageIcon("Pictures/mine.gif");
     ImageIcon flag = new ImageIcon("Pictures/flag.gif");
     private long stopTime;

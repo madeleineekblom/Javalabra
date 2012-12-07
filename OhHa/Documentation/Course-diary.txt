@@ -24,5 +24,5 @@ Mon 26.11		150 min		Start on the highscore-list, change result outputs to window
 Tue 27.11		150 min		Add actionlistener to the menu
 			240 min		Read and write highscore list
 			120 min		Add tests
-Fri 7.12		120 min		Sort algorithm for highscore list
+Fri 7.12		180 min		Sorting algorithm for highscore list
 

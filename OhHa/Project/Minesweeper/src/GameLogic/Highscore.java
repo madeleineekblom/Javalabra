@@ -24,26 +24,14 @@ public class Highscore {
 
     public Highscore() {
     }
-
-    /**
-     * 
-     * @param level     1 for greenhorn, 2 for normal, 3 for master
-     * @return          the slowest time on the specific level
-     * @throws FileNotFoundException 
-     */
-    public int getSlowestTime(int level) throws FileNotFoundException {
-        String[][] list = getHighscorelist(getFile(level));
-        return 100;
-
-    }
-
+    
     /**Sorts a nx2 list in order according to the second column (which is 
      * a column containg numbers)
      * 
      * @param list      the matrix that will be sorted (nx2)
      * @return          the sorted matrix
      */
-    public String[][] sortList(String[][] list) {
+    protected String[][] sortList(String[][] list) {
 
         for (int i = 0; i < list.length - 1; ++i) {
             for (int j = i + 1; j < list.length; ++j) {
