@@ -59,8 +59,8 @@ public class GameBoard extends JFrame {
         JMenu subHow = new JMenu("How to play");
         menuHelp.add(subHow);
         
-        JMenuItem item = new JMenuItem("Open a button pressing the mouse's left button" + "\n"
-                + "Mark a button pressing right button" + "\n"
+        JMenuItem item = new JMenuItem("Open a button pressing the mouse's left button. " 
+                + "Mark a button pressing right button. "
                 + "Find all the mines and open the others as fast as possible");
         subHow.add(item);
         
@@ -131,7 +131,8 @@ public class GameBoard extends JFrame {
         ImageIcon icon = new ImageIcon("Pictures/mine.gif");      
         Image im = icon.getImage();
         im = im.getScaledInstance(50,50, Image.SCALE_SMOOTH);
-        this.setIconImage(im);
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage("Pictures/mine.gif"));
+//        this.setIconImage(im);
         this.setTitle("Minesweeper");
 
         this.setResizable(true);
@@ -148,6 +149,7 @@ public class GameBoard extends JFrame {
      * Adds buttons to the frame, gives the button a mouselistener, and enables the buttons
      */
     private void addButtonsToFrame() {
+        
         panel = new JPanel();
         panel.setLayout(new GridLayout(move.game.getRows() + 1, move.game.getColumns()));
         move.createGameBoard();

@@ -52,7 +52,7 @@ public class WinLose extends JFrame implements ActionListener {
      */
     public void lose(int time) {
         addActions();
-        result.setText("You lost!\n" + "Time: " + time + " seconds");
+        result.setText("You lost! " + "Time: " + time + " seconds");
 
         this.setLayout(new BorderLayout());
         this.setTitle("Results");
@@ -77,7 +77,7 @@ public class WinLose extends JFrame implements ActionListener {
     public void win(int time) {
         this.time = time;
         addActions();
-        result.setText("You won!\n" + "Time: " + time + " seconds");
+        result.setText("You won! " + "Time: " + time + " seconds");
 
         this.setLayout(new BorderLayout());
         this.setTitle("Results");
@@ -135,6 +135,7 @@ public class WinLose extends JFrame implements ActionListener {
         }
         if (e.getSource() == name) {
             String enteredName = name.getText();
+            name.setEnabled(false);
             
             if (enteredName == null || enteredName.isEmpty()) {
                 enteredName = "anonymous";

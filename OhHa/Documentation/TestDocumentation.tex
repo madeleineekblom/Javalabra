@@ -32,11 +32,15 @@ After creating the buttons, it was time to make the buttons openable. Under a bu
 
 After that I added some more functions. To test the markFlag - method, I just checked that it marked the correct button, and unmarked the button if the right button was pressed again. I did this several time. \\
 
-To check whether the lose and win functions worked, I played the game on beginner level. From the tests I assumed the functions were done properly, and did the sames thing for different gameboard levels, and got the results I wanted.
+To check whether the lose and win functions worked, I played the game on beginner level. From the tests I assumed the functions were done properly, and did the sames thing for different gameboard levels, and got the results I wanted. \\
+
+When a new gameboard is created after either losing or winning, the previous window doesn't close. I see this as a problem, but haven't come up with a way to fix it. \\
 
 \section*{Highscore list}
 
-The highscore lists are not totally reliable, since you can modify (for example by removing \#) in some way that makes the file unreadable. The class highscore is tested by hand in ReadFileMain. First I tested that it is possible to write something into specific text file and then read the file. I did this by looping and printed out the results. Since it is results the file reads, it means that it has to be a String (a name) and a String that can be converted to an integer (time given in whole seconds) in the second column. It will cause a problem reading the file if it is not a string line. The sorting algortithm is also tested by hand. It sorts the results in an ascending oreder according to the times. The method getTop5 will return the first five results from the sorted list. 
+The highscore lists are not totally reliable, since you can modify (for example by removing \#) in some way that makes the file unreadable. The class highscore is tested by hand in ReadFileMain. First I tested that it is possible to write something into specific text file and then read the file. I did this by looping and printed out the results. Since it is results the file reads, it means that it has to be a String (a name) and a String that can be converted to an integer (time given in whole seconds) in the second column. It will cause a problem reading the file if it is not a string line. The sorting algortithm is also tested by hand. It sorts the results in an ascending oreder according to the times. The method getTop5 will return the first five results from the sorted list.  \\
+
+The highscore list doesn't update meanwhile the program is running; instead it updates when the program restarts.
 
 
 \end{document}

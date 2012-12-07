@@ -15,6 +15,7 @@ import static org.junit.Assert.*;
  */
 public class HighscoreTest {
     Highscore scores = new Highscore();
+    double p = 0.01; // precision
     
     
     public HighscoreTest() {
@@ -71,26 +72,42 @@ public class HighscoreTest {
     }
     
     @Test
-    public void checkGetHighScoreListForOneAddedResult() throws IOException {
+    public void testSortMethodForOneRowMatrix() {
+        String[][] list = {{"Apa", "300"}};
+        String[][] result = scores.sortList(list);
         
-        // First delete all elements in master.txt ... 
-        String name = "name";
-        int time = 28;
-        scores.writeIntoFile(name, time, 3);
+        assertEquals(list, result);
         
-        String[][] results = scores.getHighscorelist(new File("Results/Master.txt"));
-        
-        boolean n = false;
-        boolean t = false;
-        
-        if (results[0][0].equals(name)) {
-            n = true;
-        }
-        if (Integer.parseInt(results[0][1]) == time) {
-            t = true;
-        }
-        
-        assertEquals(true, n);
-        assertEquals(true, t);
     }
+    
+    @Test
+    public void testSortListMethodForSmallMatrix() {
+        String[][] list = {{"Apa", "52"}, {"Gorilla", "2"}, {"Meh", "23"}};
+        
+        String[][] help = scores.sortList(list);
+        
+        String[][] correctResult = {{"Gorilla", "2"},{"Meh", "23"},{"Apa", "52"}};
+        
+        assertEquals(correctResult, help);
+    }
+    
+    @Test
+    public void testSortListMethodWhereAllTimesAreEqual() {
+        String[][] list = {{"Apa", "5"}, {"Apa2", "5"}, {"Apa3", "5"}};
+        String[][] result = scores.sortList(list);
+        
+        assertEquals(list, result);
+    }
+    
+    @Test
+    public void testSortListMethodLargerMatrix() {
+        String[][] list = {{"Apa", "3"}, {"Apa2", "53"}, {"Apa3", "5"}, {"Apppp", "1"}, {"Apa4", "5"}};
+        String[][] result = scores.sortList(list);
+        
+        String[][] correctResult = {{"Apppp", "1"},{"Apa", "3"}, {"Apa3", "5"}, {"Apa4", "5"}, {"Apa2", "53"}};
+        
+        assertEquals(correctResult, result);
+    }
+    
+    
 }

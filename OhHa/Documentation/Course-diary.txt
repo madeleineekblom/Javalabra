@@ -25,4 +25,4 @@ Tue 27.11		150 min		Add actionlistener to the menu
 			240 min		Read and write highscore list
 			120 min		Add tests
 Fri 7.12		180 min		Sorting algorithm for highscore list
-
+			60 min		Small changes in program

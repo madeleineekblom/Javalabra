@@ -1,5 +1,6 @@
 package UserInterface;
 
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -93,12 +94,14 @@ public class MyMouseListener extends MouseAdapter implements ActionListener {
                 markWithFlag(coord[0], coord[1]);
             }
             if (board.move.win()) {
+                
                 stopTime = e.getWhen();
                 winlose.setGameBoard(r, c, m);
                 winlose.win(countTime());
                 
 //                board.dispose();
             } else if (lost) {
+                
                 stopTime = e.getWhen();
                 winlose.setGameBoard(r, c, m);
                 winlose.lose(countTime());
@@ -161,15 +164,18 @@ public class MyMouseListener extends MouseAdapter implements ActionListener {
                         lost = true;
                         board.buttons[i][j].setEnabled(false);
                         board.buttons[i][j].setIcon(mine);
+                        
                         break;
                     } else {
                         char c = board.move.matrix[i][j];
                         if (c != '0') {
                             board.buttons[i][j].setText(Character.toString(c));
+                            
                         } else {
                             board.buttons[i][j].setText("");
                         }
                         board.buttons[i][j].setEnabled(false);
+                        
                     }
                 }
             }

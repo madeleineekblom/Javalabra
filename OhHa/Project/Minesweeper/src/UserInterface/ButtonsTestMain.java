@@ -106,6 +106,7 @@ public class ButtonsTestMain extends JFrame implements ActionListener {
         }
         if (matrix[row][column] != '0') {
             buttons[row][column].setEnabled(false);
+            buttons[row][column].setForeground(Color.MAGENTA);
             buttons[row][column].setText(Character.toString(matrix[row][column]));
             visited[row][column] = true;
             if (matrix[row][column] == '*') {
