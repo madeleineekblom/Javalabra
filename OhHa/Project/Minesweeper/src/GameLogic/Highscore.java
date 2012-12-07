@@ -45,11 +45,14 @@ public class Highscore {
      */
     public String[][] sortList(String[][] list) {
 
-        for (int i = 0; i < list[1].length - 1; i++) {
-            for (int j = i + 1; j < list[1].length; j++) {
+        for (int i = 0; i < list.length - 1; ++i) {
+            for (int j = i + 1; j < list.length; ++j) {
+                if (list[j][1] == null) {
+                    continue;
+                }
                 int timei = Integer.parseInt(list[i][1]);
                 int timej = Integer.parseInt(list[j][1]);
-                if (timei > timej) {
+                if (timej < timei) {
                     String namei = list[i][0];
                     String namej = list[j][0];
 
@@ -59,7 +62,6 @@ public class Highscore {
                     list[j][1] = Integer.toString(timei);
                 }
             }
-
         }
 
         return list;

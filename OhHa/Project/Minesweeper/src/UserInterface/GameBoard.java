@@ -102,8 +102,17 @@ public class GameBoard extends JFrame {
         addHighscore(level3, 3);
         
     }
-    
+    /**
+     * Adds highscore list to the specific level and JMenu.
+     * 
+     * @param level         The JMenu that the results are added to
+     * @param n             Level of the game: 1, 2 or 3
+     * @throws FileNotFoundException   if file is not found
+     */
     private void addHighscore(JMenu level, int n) throws FileNotFoundException {
+        if (n > 3 || n < 0) {
+            return;
+        }
         String[][] results = scores.getTop5(n);
         for (int i = 0; i < results.length; i++) {
             level.add(new JMenuItem(i+1 + ". " + results[i][0] + " " + results[i][1]));
